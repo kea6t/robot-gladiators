@@ -15,9 +15,9 @@ var enemyAttack = 12;
 
 // fight function declaration
 function fight(enemyName) {
-    // Alert player to start of fight
-    window.alert("Welcome to Robot Gladiators!");
-    // prompt fight alert option for player's to fight or skip.
+    
+    while(enemyHealth > 0) {
+        // prompt fight alert option for player's to fight or skip.
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to chose. ");
 
     // if player choses to fight, then fight it is
@@ -63,10 +63,14 @@ function fight(enemyName) {
                 // fight();
         }
     }
+    }
 };
 
 for (var i = 0; i < enemyNames.length; i ++) {
-    fight(enemyNames[i]);
+    var pickEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    // Call fight function with enemy-robot
+    fight(pickEnemyName);
 }
 
 // Game states
