@@ -66,17 +66,30 @@ function fight(enemyName) {
             } else {
                 window.alert(playerName + " still has " + playerHealth + " health left. ");
             }
-
-            // If player choses to skip
         }
     } // end while loop
 }; // end fight function
 
+
 for (var i = 0; i < enemyNames.length; i++) {
-    var pickEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    // Call fight function with enemy-robot
-    fight(pickEnemyName);
+    // If player is still alive, keep on fighting.
+    if (playerHealth > 0) {
+        // let the players know which round they are in. Array starts at 0 so we added one to it.
+        window.alert("Welcome to Robot Gladiator! Round " + (i + 1));
+        // Pick new enemy to fight based on index of the enemyNames array
+        var pickedEnemyName = enemyNames[i];
+        // reset enemyHealth before starting a new Fight
+        enemyHealth = 50;
+        // debugger to pause script from running and check what's going on at the moment in the code
+        // debugger;
+    
+        // pass the pickedEnemyName variable's into the fight function, where it will assume the value of the enemyName parameter
+        fight(pickedEnemyName);
+    
+    } else {
+        window.alert("You have lost your robot in battle! Game over! ");
+        break;
+    }
 }
 
 // Game states
