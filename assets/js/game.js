@@ -30,13 +30,15 @@ var fight = function (enemyName) {
                 // alerts the player that they are skipping the fight
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
                 //Subtract money from playerMoney for skipping the fight
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playerMoney ", playerMoney);
                 break;
             }
         }
+        // generate random damage value based on player's attack power
+        var damage = randomNumber(playerAttack - 3, playerAttack);
         // Remove enemy's health by subtracting the amount set in the playerAttack variable.
-        enemyHealth = enemyHealth - playerAttack;
+        enemyHealth = Math.max(0, enemyHealth - damage);
         // Log a resulting message to the console so we know that the code is working.
         console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining. ");
         // Check enemy's health
@@ -50,8 +52,10 @@ var fight = function (enemyName) {
         } else {
             window.alert(enemyName + " still has " + enemyHealth + " health left. ");
         }
+        // generate random damage value based on enemy's attack power
+        var damage = randomNumber(enemyAttack - 3, enemyAttack);
         // Remove player's health by subtracting the amount set in the enemyAttack variable.
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - damage);
         // Log a resulting message to the console so we know that it worked.
         console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining. ");
         // Check player's health and update
@@ -79,7 +83,7 @@ var startGame = function () {
             // Pick new enemy to fight based on index of the enemyNames array
             var pickedEnemyName = enemyNames[i];
             // reset enemyHealth before starting a new Fight
-            enemyHealth = 50;
+            enemyHealth = randomNumber(40, 60);
             // debugger to pause script from running and check what's going on at the moment in the code
             // debugger;
 
@@ -176,6 +180,15 @@ var shop = function () {
     }
 
 };
+
+// randomNumber function
+var randomNumber = function(min, max) {
+    // sets the random value between 0 to 20 plus 40 so it doesn't start at 0 no matter what.
+    var value = Math.floor(Math.random() * (max - min + 1) + min) ;
+
+    // sets the function value so it can be used again with the updated value
+    return value;
+}
 
 
 
