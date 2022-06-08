@@ -177,10 +177,26 @@ var enemyInfo = [
     }
 ];
 
+// get player name Function to set name
+var getPlayerName = function() {
+    var name = "";
+
+    // ***************************************
+    // ADD loop here with prompt and condition
+    // ***************************************
+
+    while(name === "" || name === null) {
+        name = prompt("What is your Robot's name?");
+    }
+
+    console.log("Your robot's name is " + name);
+    return name;
+}
+
 
 // Creating object playerInfo for player name, health, and attack
 var playerInfo = {
-    name: window.prompt("What is your robot's name? "),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
